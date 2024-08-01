@@ -157,7 +157,7 @@ def tagg_grants(grants_data):
     """
 
     user_prompt = """Return your output in a JSON format. No explanation required.
-                    Example Output: {"id":"string", "researchTypeTags":["string"],"sbirTags":["string"],"companyTypeTags":["string"]}
+                    Example Output: {"id":"string", "researchTypeTags":["string"],"sbirTags":["string"],"companyTypeTags":["string"],"countryBasedEligibility":["string"],"countryOperationEligibility":["string"]}
                   """
 
     results = []
@@ -210,6 +210,8 @@ def main():
     logging.info("Loading documents...")
 
     documents = loader.load()
+    # documents = documents[0]
+    # logging.info(f"📄 First document: {documents[0]}")
     assert documents is not None, "Failed to load documents."
     
     logging.info(f"Loaded {len(documents)} documents")

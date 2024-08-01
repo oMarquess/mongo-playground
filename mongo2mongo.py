@@ -156,11 +156,20 @@ def tagg_grants(grants_data):
      - For Profit
      - Non Profit
 
+    Task 7:
+    Identify the country-based eligibility.
+    Review the grant documentation to ascertain the geographic eligibility of applicants. Specify which countries or regions are allowed to apply, based on the legal registration and operational mandates mentioned in the grant.
+
+    Task 8:
+    Identify the country operation eligibility.
+    Determine and list the countries in which the funded activities can be conducted. Check the grant details for any mention of specific geographic limitations or preferences regarding where the grant-funded projects or operations can take place.
+
+
     """
 
     user_prompt = """Return your output in a JSON format. 
                     No explanation required.
-                    Example Output: {"opportunityId":["string"],"opportunityTitle":["string"],"agencyCode":["string"],"researchTypeTags":["string"],"sbirTags":["string"],"companyTypeTags":["string"]}
+                    Example Output: {"opportunityId":["string"],"opportunityTitle":["string"],"agencyCode":["string"],"researchTypeTags":["string"],"sbirTags":["string"],"companyTypeTags":["string"],"countryBasedEligibility":["string"],"countryOperationEligibility":["string"]}
                     
                   """
 
@@ -186,7 +195,7 @@ def create_mongodb_entries(processed_grants):
         # Connect to the MongoDB client
         client = MongoClient("mongodb+srv://bargains_pro:MOIookr5SFne3vWK@cluster0.je8x5oh.mongodb.net/")  
         db = client["free_playground"]   
-        collection = db['all_opportunities']
+        collection = db['all_opportunities_loc']
 
         # Load grants from the provided JSON string
         grants = json.loads(processed_grants)
@@ -217,7 +226,7 @@ def main():
     logging.info("Loading documents...")
 
     documents = loader.load()
-    # documents = documents[:10]
+    documents = documents[:10]
     logging.info(f"📄 First document: {documents[0]}")
     assert documents is not None, "Failed to load documents."
     
@@ -225,7 +234,7 @@ def main():
 
     metadata_keys = {
         "database" : "freemind2",
-        "collection" : "all_opportunities",
+        "collection" : "all_opportunities_loc",
     }
 
     processed_documents = [process_document_with_uuid(doc, metadata_keys) for doc in documents]
