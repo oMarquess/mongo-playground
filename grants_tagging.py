@@ -154,6 +154,13 @@ def tagg_grants(grants_data):
      - Academic
      - For Profit
      - Non Profit
+     Task 4:
+     Identify the country-based eligibility.
+     Review the grant documentation to ascertain the geographic eligibility of applicants. Specify which countries or regions are allowed to apply, based on the legal registration and operational mandates mentioned in the grant.
+
+     Task 5:
+     Identify the country operation eligibility.
+     Determine and list the countries in which the funded activities can be conducted. Check the grant details for any mention of specific geographic limitations or preferences regarding where the grant-funded projects or operations can take place.
     """
 
     user_prompt = """Return your output in a JSON format. No explanation required.
@@ -241,6 +248,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-    
-
     
